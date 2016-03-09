@@ -1,9 +1,10 @@
 <?php
+session_start();
 if (!isset($_SESSION["lang"]) || ($_SESSION["lang"] == "ar")) {
     require_once 'private/lang/ar.php';
     $_SESSION["lang"] = "ar";
 } else {
-    require_once 'private/lang/ar' . $_SESSION["lang"] . '.php';
+    require_once 'private/lang/' . $_SESSION["lang"] . '.php';
 }
 ?>
 <!DOCTYPE html>
@@ -19,10 +20,6 @@ if (!isset($_SESSION["lang"]) || ($_SESSION["lang"] == "ar")) {
     </head>
     <body>
         <div class="container">
-
-
-
-
 
             <nav class="navbar navbar-inverse navbar-static-top">
                 <div class="container-fluid">
@@ -42,11 +39,11 @@ if (!isset($_SESSION["lang"]) || ($_SESSION["lang"] == "ar")) {
 
                         <ul class="nav navbar-nav">
                             <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-                            <li><a href="#">Link</a></li>
+                            <li><a href="#"><?php echo LANG_index_share ?></a></li>
                         </ul>
 
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a href="#"><?php echo LANG_index_share ?></a></li>
+                            <li data-toggle="modal" data-target="#language"><a href="#">Language</a></li>
                         </ul>
                     </div><!-- /.navbar-collapse -->
                 </div><!-- /.container-fluid -->
@@ -55,15 +52,16 @@ if (!isset($_SESSION["lang"]) || ($_SESSION["lang"] == "ar")) {
             <div class="panel panel-default" style="text-align: center;">
                 <div class="panel-body">
                     <h1><?php echo LANG_index_SiteTitle ?></h1>
+                    <div class="pager"></div>
                     <p><?php echo LANG_index_mainMessage ?></p><br><br>
-                    <p><a class="btn btn-success btn-lg"><?php echo LANG_index_JoinUs ?></a></p>
+                    <a class="btn btn-info btn-lg"><?php echo LANG_index_JoinUs ?></a>
                 </div>
                 <div class="row" style="padding: 25px;">
                     <div class="col-sm-6">
                         <div class="panel panel-default">
                             <div class="panel-body">
                                 <p><?php echo LANG_index_PathFinderMessage; ?></p>
-                                <a href="pathfinder.php"><?php echo LANG_index_PathFinderLink ?></a><br>
+                                <a class="btn btn-success btn-lg btn-block" href="pathfinder.php"><?php echo LANG_index_PathFinderLink ?></a>
                             </div>
                         </div>
                     </div>
@@ -71,14 +69,20 @@ if (!isset($_SESSION["lang"]) || ($_SESSION["lang"] == "ar")) {
                         <div class="panel panel-default">
                             <div class="panel-body">
                                 <p><?php echo LANG_index_SearchTrafficMessage; ?></p>
-                                <a href="searchtraffic.php"><?php echo LANG_index_SearchTrafficLink ?></a><br>
+                                <a class="btn btn-success btn-lg btn-block" href="searchtraffic.php"><?php echo LANG_index_SearchTrafficLink ?></a>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>    
+            <small>
+                <a href="#" data-toggle="modal" data-target="#contract"><?php echo LANG_index_contractAcceptance; ?></a>
+            </small>
         </div>
 
+        <!-- include Models -->
+        <?php require_once 'public/views/models.html'; ?>
+        
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script src="public/js/bootstrap.min.js"></script>
     </body>
