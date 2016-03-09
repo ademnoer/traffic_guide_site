@@ -1,0 +1,14 @@
+@import url(http://fonts.googleapis.com/earlyaccess/droidarabickufi.css);
+
+html{
+    height: 100%;
+}
+
+body{
+    height: 100%;
+    padding-top: 25px;
+    background-image: url(../img/bg.png);
+    font-family: 'Droid Arabic Kufi', sans-serif;
+
+}
+
